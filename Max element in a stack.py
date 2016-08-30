@@ -5,47 +5,44 @@
 2    -Delete the element present at the top of the stack.
 3    -Print the maximum element in the stack.
 """
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Aug 24 10:46:24 2016
+
+@author: Kailash Nathan
+"""
 class Stack:
-     def __init__(self):
-         self.items = []
+    def __init__(self):
+        self.items=[]
+    
+    def isEmpty(self):
+        return self.items==[]
+    
+    def push(self,item):
+        self.items.append(item)
 
-     def isEmpty(self):
-         return self.items == []
+    def pop(self):
+         return self.items.pop()
 
-     def push(self, item):
-         self.items.append(item)
-
-     def pop(self):
-          return self.items.pop()
-
-     def prints(self):
-          print self.items
-
-     def peek(self):
+    def peek(self):
          return self.items[len(self.items)-1]
 
-     def size(self):
+    def size(self):
          return len(self.items)
-    
-
+    def maxitem(self):
+        return max(self.items)
 s=Stack()
-m=Stack()
 n=int(input())
-maxi=0
-for i in range (0,n):
-     a=(raw_input())
-     b=map(int,a.split())
-     if b[0]==1:
-          s.push(b[1])
-          if m.size()==0:
-               m.push(b[1])
-          elif b[1]>m.peek():
-               m.push(b[1])
-     if b[0]==2:
-          d=s.pop()
-          if m.peek()==d:
-               m.pop()
-     if b[0]==3:
-          x=m.peek()
-          print x
-
+for i in range(0,n):
+    x=input()
+    h=(x.strip().split())
+    if int(h[0])==1:
+        if s.isEmpty():
+            s.push(int(h[1]))
+        else:
+            s.push(max(s.peek(),int(h[1]))) #push the max element into the stack top
+    if int(h[0])==2:
+        s.pop()
+    if int(h[0])==3:
+        print(s.peek())
+        
